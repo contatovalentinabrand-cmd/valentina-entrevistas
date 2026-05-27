@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrevistas — Confecções Valentina Brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --black-card: #1a1a1a;
+    --black-border: #2a2a2a;
+    --black-hover: #222222;
+    --gold: #c9a96e;
+    --gold-light: #e8cfa0;
+    --gold-muted: #8a6f42;
+    --white: #f5f0eb;
+    --white-muted: #b0a99f;
+    --white-dim: #6b6560;
+    --green: #2d6a4f;
+    --green-bg: #0f2a1e;
+    --red: #8b2635;
+    --red-bg: #2a0f14;
+    --amber: #8a6430;
+    --amber-bg: #2a1f0a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .site-header {
+    border-bottom: 1px solid var(--black-border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--black);
+    z-index: 100;
+  }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .brand-sub {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+  .header-right {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+  }
+
+  /* Main */
+  .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .page-desc {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--black-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .tab {
+    flex: 1;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    background: var(--black-soft);
+    border-right: 1px solid var(--black-border);
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .tab:last-child { border-right: none; }
+  .tab:hover:not(.active) { background: var(--black-hover); color: var(--white-muted); }
+  .tab.active { background: var(--black-card); color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .tab-icon { font-size: 1rem; display: block; margin-bottom: 3px; }
+  .tab-sub { font-size: 0.65rem; color: inherit; opacity: 0.7; letter-spacing: 0.08em; display: block; margin-top: 2px; text-transform: none; }
+
+  /* Progress */
+  .progress-wrap { margin-bottom: 2rem; }
+  .progress-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .progress-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); }
+  .progress-count { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); font-weight: 500; }
+  .progress-track { height: 1px; background: var(--black-border); }
+  .progress-fill { height: 100%; background: var(--gold); transition: width 0.4s ease; }
+
+  /* Section */
+  .section { margin-bottom: 1rem; border: 1px solid var(--black-border); border-radius: 4px; overflow: hidden; }
+  .sec-hd {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    background: var(--black-soft);
+    border-bottom: 1px solid var(--black-border);
+  }
+  .sec-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .sec-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); flex: 1; }
+  .sec-time { font-size: 0.68rem; letter-spacing: 0.1em; color: var(--white-dim); }
+
+  /* Items */
+  .item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--black-border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: var(--black-hover); }
+  .item.done { opacity: 0.4; }
+  .item.done .itext { text-decoration: line-through; }
+
+  .cb {
+    width: 16px; height: 16px;
+    border: 1px solid var(--black-border);
+    flex-shrink: 0; margin-top: 3px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .item.done .cb { background: var(--gold); border-color: var(--gold); }
+  .ck { display: none; }
+  .item.done .ck { display: block; }
+
+  .itext { font-size: 0.88rem; color: var(--white); line-height: 1.55; font-weight: 300; }
+  .itag { font-size: 0.72rem; color: var(--white-dim); margin-top: 3px; letter-spacing: 0.03em; }
+
+  .badge {
+    display: inline-block; font-size: 0.62rem; padding: 1px 7px;
+    margin-left: 6px; vertical-align: middle;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+  }
+  .bk { background: var(--amber-bg); color: var(--gold-light); border: 1px solid var(--amber); }
+  .bt { background: #0a1a2a; color: #7ab3d4; border: 1px solid #2a5a7a; }
+
+  .test-box {
+    background: var(--black); border: 1px solid var(--black-border);
+    padding: 10px 14px; margin: 8px 0 2px 28px;
+    font-size: 0.8rem; color: var(--white-dim); line-height: 1.65;
+  }
+  .test-box strong { color: var(--white-muted); font-weight: 500; }
+
+  /* Notes */
+  .notes-area {
+    margin-top: 1.5rem;
+    border: 1px solid var(--black-border);
+    padding: 1.25rem 1.5rem;
+  }
+  .notes-title {
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-muted); margin-bottom: 1rem;
+  }
+  .notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+  .note-field label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); display: block; margin-bottom: 5px; }
+  .note-field textarea {
+    width: 100%; font-size: 0.82rem;
+    border: 1px solid var(--black-border);
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    padding: 8px 10px; resize: none; height: 64px;
+    line-height: 1.5; font-weight: 300;
+  }
+  .note-field textarea:focus { outline: none; border-color: var(--gold-muted); }
+
+  /* Score */
+  .score-area {
+    margin-top: 1rem; border: 1px solid var(--black-border); padding: 1.25rem 1.5rem;
+  }
+  .score-title { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-muted); margin-bottom: 1rem; }
+  .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .sc {
+    background: var(--black-soft); border: 1px solid var(--black-border);
+    padding: 10px 12px; cursor: pointer; transition: border-color 0.15s;
+    text-align: center;
+  }
+  .sc:hover { border-color: var(--gold-muted); }
+  .sc.ar { border-color: var(--red); background: var(--red-bg); }
+  .sc.ay { border-color: var(--amber); background: var(--amber-bg); }
+  .sc.ag { border-color: var(--green); background: var(--green-bg); }
+  .sc-lbl { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 4px; }
+  .sc-val { font-size: 1.4rem; }
+  .r-c { color: #c97070; } .y-c { color: var(--gold); } .g-c { color: #6dbf96; }
+
+  .verdict {
+    margin-top: 10px; font-size: 0.8rem; letter-spacing: 0.05em;
+    padding: 10px 14px; display: none;
+  }
+  .verdict.show { display: block; }
+  .vr { background: var(--red-bg); color: #c97070; border-left: 2px solid var(--red); }
+  .vy { background: var(--amber-bg); color: var(--gold-light); border-left: 2px solid var(--amber); }
+  .vg { background: var(--green-bg); color: #6dbf96; border-left: 2px solid var(--green); }
+
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .pill {
+    font-size: 0.65rem; padding: 3px 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500; border: 1px solid;
+  }
+  .ps { background: transparent; color: #c97095; border-color: #993556; }
+  .pv { background: transparent; color: #9a96d4; border-color: #534AB7; }
+  .pc { background: transparent; color: #6dbf96; border-color: #2d6a4f; }
+  .pg { background: transparent; color: var(--white-dim); border-color: var(--black-border); }
+
+  .reset-btn {
+    margin-top: 1.25rem; font-size: 0.68rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--white-dim);
+    background: none; border: 1px solid var(--black-border);
+    padding: 7px 16px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .reset-btn:hover { border-color: var(--gold-muted); color: var(--white-muted); }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--black-border); margin: 2rem 0; }
+
+  @media (max-width: 600px) {
+    .site-header { padding: 1.25rem 1.25rem; }
+    .main { padding: 2rem 1.25rem 4rem; }
+    .tabs { flex-direction: column; }
+    .tab { border-right: none; border-bottom: 1px solid var(--black-border); }
+    .tab:last-child { border-bottom: none; }
+    .score-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand-name">Confecções Valentina Brand</div>
+    <div class="brand-sub">Roteiro de entrevistas</div>
+  </div>
+  <div class="header-right">Uso interno</div>
+</header>
+
+<main class="main">
+  <h1 class="page-title">Entrevistas</h1>
+  <p class="page-desc">Social media · Vendedora · Caixa</p>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-s" onclick="switchTab('s')">
+      <span class="tab-icon">✦</span>
+      Social media
+      <span class="tab-sub">~45 min</span>
+    </div>
+    <div class="tab" id="tab-v" onclick="switchTab('v')">
+      <span class="tab-icon">◈</span>
+      Vendedora
+      <span class="tab-sub">~50 min</span>
+    </div>
+    <div class="tab" id="tab-c" onclick="switchTab('c')">
+      <span class="tab-icon">◇</span>
+      Caixa
+      <span class="tab-sub">~40 min</span>
+    </div>
+  </div>
+
+  <div id="panel-s"></div>
+  <div id="panel-v" style="display:none"></div>
+  <div id="panel-c" style="display:none"></div>
+</main>
+
+<script>
+const dataS = [
+  {title:"Abertura",color:"#6b6560",time:"5 min",items:[
+    {t:"Boas-vindas — explique brevemente o perfil da loja e o público",tag:"Contexto é importante para quem trabalha com comunicação"},
+    {t:"Peça para se apresentar livremente",tag:"Observe clareza, personalidade e como fala de si mesma"},
+  ]},
+  {title:"Motivação & planos",color:"#c9a96e",time:"10 min",items:[
+    {t:"Por que se candidatou a essa vaga especificamente?",tag:"Interesse genuíno pela loja ou só mais um freela?",key:true},
+    {t:"Como se imagina daqui a 2 ou 3 anos na área?",tag:"Planos concretos ou sem direção? Ambição é positiva",key:true},
+    {t:"Qual projeto ou perfil que trabalhou te deixou mais orgulhosa? Por quê?",tag:"Revela o que ela valoriza e como mede sucesso"},
+  ]},
+  {title:"Perfil & visão",color:"#993556",time:"10 min",items:[
+    {t:"Você consome os conteúdos dos concorrentes da loja? O que acha?",tag:"Pesquisa de mercado espontânea — sinal de profissionalismo",key:true},
+    {t:"O que você mudaria no perfil atual da loja se pudesse começar amanhã?",tag:"Diagnóstico rápido — criatividade + tato para dar feedback",key:true},
+    {t:"Como equilibra o que você acha bonito com o que o algoritmo pede?",tag:"Maturidade entre estética e resultado"},
+    {t:"Você prefere trabalhar com identidade visual já definida ou criar do zero?",tag:"Autonomia vs. execução — entender o perfil dela"},
+  ]},
+  {title:"Situações reais",color:"#8a6430",time:"8 min",items:[
+    {t:"Situação: um post gerou comentários negativos de clientes reclamando de atendimento. O que você faz?",tag:"Gestão de crise — postura e velocidade de resposta",key:true},
+    {t:"Situação: a loja tem muitos clientes estrangeiros. Como adaptaria o conteúdo para esse público?",tag:"Sensibilidade cultural e criatividade estratégica",key:true},
+    {t:"Situação: o dono pede um post de última hora para hoje à tarde. Como você organiza?",tag:"Flexibilidade e gestão de urgência"},
+  ]},
+  {title:"Teste prático",color:"#534AB7",time:"10 min",test:true,items:[
+    {t:"Crie na hora uma legenda para um produto da loja — 5 minutos",tag:"Escrita, voz de marca e velocidade de criação",key:true,
+    detail:`<strong>Como conduzir:</strong> Mostre um produto real ou foto da vitrine. Dê 5 minutos e peça uma legenda para Instagram com chamada para ação.<br><br><strong>O que observar:</strong> ela pergunta sobre o público antes de escrever? O texto tem personalidade? Pensou em stories ou só feed?<br><br><strong>Bônus:</strong> pergunte como transformaria esse conteúdo em um Reels de 15 segundos.`},
+    {t:"Mostre o perfil atual da loja no celular e peça uma análise rápida",tag:"Olhar crítico e capacidade de diagnóstico",key:true,
+    detail:`<strong>O que pedir:</strong> "O que está funcionando? O que você mudaria primeiro?"<br><br><strong>Sinal positivo:</strong> observa consistência visual, frequência, engajamento, bio, destaques.<br><br><strong>Sinal de alerta:</strong> critica tudo sem propor nada, ou elogia tudo sem nenhuma ressalva.`},
+  ]},
+  {title:"Idiomas & fechamento",color:"#6b6560",time:"5 min",items:[
+    {t:"Você fala ou tem noção de algum outro idioma além do português?",tag:"Útil para legenda bilíngue — inglês e espanhol são diferenciais"},
+    {t:"Quais ferramentas usa no dia a dia — edição, agendamento, analytics?",tag:"Canva, CapCut, Later, Meta Business Suite — familiaridade técnica"},
+    {t:"Tem alguma dúvida sobre a vaga, autonomia criativa ou a dinâmica com a loja?",tag:"Quem pergunta está genuinamente interessada"},
+    {t:"Informe os próximos passos e agradeça",tag:"Ela também está te avaliando — deixe uma boa impressão"},
+  ]}
+];
+
+const dataV = [
+  {title:"Abertura",color:"#6b6560",time:"5 min",items:[
+    {t:"Boas-vindas — apresente a loja e deixe-a à vontade",tag:"Clima confortável desde o início"},
+    {t:"Peça para se apresentar livremente",tag:"Observe energia, simpatia e confiança na fala"},
+  ]},
+  {title:"Motivação & planos",color:"#7F77DD",time:"10 min",items:[
+    {t:"Por que se candidatou a essa vaga?",tag:"Interesse real ou vaga qualquer?",key:true},
+    {t:"O que você busca nesse novo emprego além do salário?",tag:"Ambiente, crescimento, estabilidade — o que move ela?",key:true},
+    {t:"Como se imagina daqui a 2 ou 3 anos?",tag:"Planos concretos ou sem direção?",key:true},
+    {t:"O que mais gostou e o que foi difícil nos trabalhos anteriores?",tag:"Autoconsciência e maturidade"},
+  ]},
+  {title:"Perfil & valores",color:"#2d6a4f",time:"10 min",items:[
+    {t:"O que é um bom atendimento pra você?",tag:"Alinhamento com os valores da loja"},
+    {t:"Como age quando um cliente está irritado ou impaciente?",tag:"Paciência e inteligência emocional",key:true},
+    {t:"Você aborda o cliente primeiro ou espera ele chegar até você?",tag:"Postura ativa vs. passiva — fundamental para vendas"},
+    {t:"Você prefere um dia muito movimentado ou mais tranquilo?",tag:"Ritmo ideal — loja com estrangeiros tende a ser intensa"},
+  ]},
+  {title:"Situações reais",color:"#8a6430",time:"10 min",items:[
+    {t:"Situação: cliente quer trocar um produto sem cupom de venda. O que você faz?",tag:"Julgamento e respeito à política da loja"},
+    {t:"Situação: dois clientes precisam de você ao mesmo tempo. Como resolve?",tag:"Priorização e calma sob pressão"},
+    {t:"Situação: cliente estrangeiro entra e não fala português. Como reage?",tag:"Criatividade e disposição — atitude vale mais que idioma",key:true},
+    {t:"Já indicou um produto mais barato por ser mais adequado ao cliente? Conte.",tag:"Honestidade na venda — constrói confiança a longo prazo"},
+  ]},
+  {title:"Teste prático — role-play de venda",color:"#534AB7",time:"8 min",test:true,items:[
+    {t:"Me venda um produto da loja como se eu fosse um cliente entrando agora",tag:"Abordagem, escuta, argumento, fechamento",key:true,
+    detail:`<strong>Como conduzir:</strong> Não diga o produto — deixe ela escolher o que vai "vender". Isso já é parte do teste.<br><br><strong>O que observar:</strong> aborda ou espera? Pergunta o que o cliente precisa? Lida com objeção ("tá caro")? Oferece algo a mais?`}
+  ]},
+  {title:"Idiomas & fechamento",color:"#6b6560",time:"5 min",items:[
+    {t:"Você fala ou tem noção de algum outro idioma além do português?",tag:"Qualquer nível conta"},
+    {t:"Tem alguma dúvida sobre a vaga, horários ou a equipe?",tag:"Quem pergunta está genuinamente interessada"},
+    {t:"Informe os próximos passos e agradeça",tag:"Ela também está te avaliando"},
+  ]}
+];
+
+const dataC = [
+  {title:"Abertura",color:"#6b6560",time:"5 min",items:[
+    {t:"Boas-vindas — explique brevemente a dinâmica da loja",tag:"Clima confortável desde o início"},
+    {t:"Peça para se apresentar livremente",tag:"Observe organização no pensamento e tranquilidade"},
+  ]},
+  {title:"Motivação & planos",color:"#2d6a4f",time:"10 min",items:[
+    {t:"Por que se candidatou a essa vaga?",tag:"Interesse real ou qualquer coisa que aparecer?",key:true},
+    {t:"O que você busca nesse novo emprego além do salário?",tag:"Estabilidade, rotina, ambiente — o que importa pra ela?",key:true},
+    {t:"Como se imagina daqui a 2 ou 3 anos?",tag:"Quer crescer na loja ou é passagem?",key:true},
+    {t:"Já trabalhou com caixa ou registro de vendas antes?",tag:"Experiência com responsabilidade operacional"},
+  ]},
+  {title:"Perfil & valores",color:"#1a5a3f",time:"10 min",items:[
+    {t:"Como você lida quando comete um erro — mesmo pequeno?",tag:"Honestidade e responsabilidade",key:true},
+    {t:"O que você faz quando há muitos clientes esperando e você está sozinha?",tag:"Calma sob pressão e foco"},
+    {t:"Se o fechamento do caixa não bater no final do dia, o que você faz?",tag:"Postura ética — revela muito sobre o caráter",key:true},
+    {t:"Você se considera uma pessoa detalhista? Dê um exemplo.",tag:"Atenção a detalhes é essencial no caixa"},
+  ]},
+  {title:"Situações reais",color:"#8a6430",time:"8 min",items:[
+    {t:"Situação: cliente alega que o valor cobrado está errado. Como você confere e lida?",tag:"Calma e processo — sem dinheiro em espécie para trocar",key:true},
+    {t:"Situação: o PIX do cliente cai com valor errado. O que você faz?",tag:"Procedimento correto — chamar responsável ou estornar?",key:true},
+    {t:"Situação: cliente estrangeiro não entende como funciona o PIX. O que você faz?",tag:"Paciência e criatividade para explicar sem idioma comum"},
+    {t:"Situação: cliente insiste em pagar em dinheiro. Como você explica a política da loja?",tag:"Firmeza e simpatia ao mesmo tempo"},
+  ]},
+  {title:"Teste prático — registro de venda",color:"#534AB7",time:"5 min",test:true,items:[
+    {t:"Simule o processo de passar um produto e gerar a cobrança por PIX",tag:"Familiaridade com o fluxo — observe calma e organização",key:true,
+    detail:`<strong>Como conduzir:</strong> Use o sistema real da loja ou descreva o fluxo. Peça para simular com um produto qualquer.<br><br><strong>O que observar:</strong> confirma o valor antes de gerar o QR code? Aguarda confirmação do pagamento antes de liberar o produto? Sabe o que fazer se o PIX demorar?`},
+    {t:"O que você faz se o cliente mostrar o comprovante mas o PIX não aparecer no sistema?",tag:"Não liberar produto sem confirmação real",
+    detail:`<strong>Resposta esperada:</strong> aguardar confirmação no sistema ou chamar o responsável. Nunca liberar apenas pelo print do cliente.<br><br><strong>Sinal de alerta:</strong> "liberaria pra não gerar confusão".`},
+  ]},
+  {title:"Idiomas & fechamento",color:"#6b6560",time:"5 min",items:[
+    {t:"Você fala ou tem noção de algum outro idioma além do português?",tag:"Qualquer nível conta"},
+    {t:"Tem alguma dúvida sobre a vaga, horários ou a equipe?",tag:"Quem pergunta está genuinamente interessada"},
+    {t:"Informe os próximos passos e agradeça",tag:"Ela também está te avaliando"},
+  ]}
+];
+
+const allNotes = {
+  s:["Primeira impressão","Visão de marca & criatividade","Planos de futuro","Teste prático — impressão"],
+  v:["Primeira impressão","Energia & simpatia","Planos de futuro","Teste de venda — impressão"],
+  c:["Primeira impressão","Organização & calma","Planos de futuro","Simulação de caixa — impressão"]
+};
+const allData={s:dataS,v:dataV,c:dataC};
+const pillClass={s:'ps',v:'pv',c:'pc'};
+const roleLabel={s:'Social media',v:'Vendedora',c:'Caixa'};
+const durLabel={s:'~45 min',v:'~50 min',c:'~40 min'};
+const pfColor={s:'#993556',v:'#7F77DD',c:'#2d6a4f'};
+
+let state={s:{checked:{},score:null},v:{checked:{},score:null},c:{checked:{},score:null}};
+
+function switchTab(t){
+  ['s','v','c'].forEach(x=>{
+    document.getElementById('tab-'+x).className='tab'+(x===t?' active':'');
+    document.getElementById('panel-'+x).style.display=x===t?'block':'none';
+  });
+}
+
+function buildPanel(tab){
+  const data=allData[tab],notes=allNotes[tab],s=state[tab];
+  let total=0; data.forEach(sec=>total+=sec.items.length);
+  const done=Object.values(s.checked).filter(Boolean).length;
+  const pct=Math.round((done/total)*100);
+
+  let html=`<div class="meta">
+    <span class="pill ${pillClass[tab]}">${roleLabel[tab]}</span>
+    <span class="pill pg">${durLabel[tab]}</span>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-row">
+      <span class="progress-label">Progresso</span>
+      <span class="progress-count">${done} / ${total} itens</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${pfColor[tab]}"></div></div>
+  </div>`;
+
+  data.forEach((sec,si)=>{
+    const testBadge=sec.test?`<span class="badge bt">teste</span>`:'';
+    html+=`<div class="section"><div class="sec-hd"><div class="sec-dot" style="background:${sec.color}"></div><span class="sec-title">${sec.title}${testBadge}</span><span class="sec-time">${sec.time}</span></div>`;
+    sec.items.forEach((it,ii)=>{
+      const k=`${si}-${ii}`,isDone=!!s.checked[k];
+      const keyBadge=it.key?`<span class="badge bk">chave</span>`:'';
+      const detailBox=it.detail?`<div class="test-box">${it.detail}</div>`:'';
+      html+=`<div class="item${isDone?' done':''}" onclick="toggle('${tab}',${si},${ii})">
+        <div class="cb"><svg class="ck" width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.2 5.7L8 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div style="flex:1"><div class="itext">${it.t}${keyBadge}</div><div class="itag">${it.tag}</div>${detailBox}</div>
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+
+  html+=`<div class="notes-area"><p class="notes-title">Anotações</p><div class="notes-grid">`;
+  notes.forEach(n=>{html+=`<div class="note-field"><label>${n}</label><textarea placeholder=""></textarea></div>`;});
+  html+=`</div></div>`;
+
+  const verdText=s.score==='r'?'Perfil não adequado para a vaga neste momento.':
+    s.score==='y'?'Potencial identificado. Agendar segunda etapa.':
+    s.score==='g'?'Perfil recomendado para contratação. Prosseguir com documentação e integração.':'';
+
+  html+=`<div class="score-area"><p class="score-title">Avaliação final</p><div class="score-grid">
+    <div class="sc${s.score==='r'?' ar':''}" onclick="setScore('${tab}','r')"><div class="sc-lbl">Não recomendado</div><div class="sc-val r-c">✗</div></div>
+    <div class="sc${s.score==='y'?' ay':''}" onclick="setScore('${tab}','y')"><div class="sc-lbl">2ª etapa</div><div class="sc-val y-c">~</div></div>
+    <div class="sc${s.score==='g'?' ag':''}" onclick="setScore('${tab}','g')"><div class="sc-lbl">Contratar</div><div class="sc-val g-c">✓</div></div>
+  </div><div class="verdict${s.score?' show':''} ${s.score?'v'+s.score:''}">${verdText}</div></div>`;
+
+  html+=`<button class="reset-btn" onclick="resetTab('${tab}')">↺ Reiniciar entrevista</button>`;
+  document.getElementById('panel-'+tab).innerHTML=html;
+}
+
+function toggle(tab,si,ii){state[tab].checked[`${si}-${ii}`]=!state[tab].checked[`${si}-${ii}`];buildPanel(tab);}
+function setScore(tab,v){state[tab].score=v;buildPanel(tab);}
+function resetTab(tab){state[tab]={checked:{},score:null};buildPanel(tab);}
+
+buildPanel('s');buildPanel('v');buildPanel('c');
+</script>
+</body>
+</html>
